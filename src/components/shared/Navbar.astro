@@ -1,0 +1,186 @@
+---
+const navItems = [
+    { href: "/", title: "Inicio" },
+    { href: "/", title: "Notas" },
+];
+---
+
+<header class="navbar-container">
+    <nav class="navbar">
+        <a href="/" class="brand-logo">NotasApp v2</a>
+
+        <div class="nav-links">
+            {
+                navItems.map((item) => (
+                    <a href={item.href} class="nav-link">
+                        {item.title}
+                    </a>
+                ))
+            }
+        </div>
+    </nav>
+</header>
+
+<style>
+    .navbar-container {
+        /* Opacidad **REDUCIDA** a 0.6 para MÁS transparencia */
+        background-color: rgba(23, 13, 110, 0.6);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        /* Sombra más marcada para dar sensación de elevación y grosor del cristal */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+
+        /* Efecto de Desenfoque **AUMENTADO** para ser más notorio */
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        /* Se añade un borde sutil para enmarcar el "cristal" */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* --- El resto de los estilos se mantienen igual por coherencia --- */
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .brand-logo {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .brand-logo:hover {
+        color: var(--hover-color);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-link {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        position: relative;
+        transition:
+            color 0.3s ease,
+            transform 0.2s ease;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--hover-color);
+        transition: width 0.3s ease-in-out;
+    }
+
+    .nav-link:hover {
+        color: var(--hover-color);
+        transform: translateY(-2px);
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    /* -------------------------------------- */
+    /* ESTILOS DE CONTENIDO (Para contraste)  */
+    /* -------------------------------------- */
+    .content-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        /* Asegura que el contenido se vea a través del navbar si la imagen falla */
+        background-color: rgba(13, 17, 23, 0.85);
+        min-height: 100vh;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-title,
+    .section-title,
+    .service-card h3 {
+        color: white;
+    }
+
+    .info-section {
+        background-color: var(--secondary-bg-color);
+        padding: 3rem;
+        margin-top: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        border: 1px solid #30363d;
+    }
+
+    .service-card {
+        background-color: var(--body-bg-color);
+        padding: 2rem;
+        border-radius: 6px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+        border-left: 3px solid var(--hover-color);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .long-text p {
+        background-color: var(--secondary-bg-color);
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--accent-color);
+    }
+
+    .site-footer {
+        background-color: var(--secondary-bg-color);
+        color: var(--main-text-color);
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 4rem;
+        border-top: 1px solid #30363d;
+    }
+
+    /* Media queries para responsividad */
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .nav-links {
+            flex-direction: column;
+            width: 100%;
+            text-align: left;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            width: 100%;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link:last-child {
+            border-bottom: none;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+    }
+</style>
