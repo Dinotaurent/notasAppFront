@@ -1,4 +1,6 @@
 ---
+import StatusIsla from "./StatusIsla.astro";
+
 const navItems = [
     { href: "/", title: "Inicio" },
     { href: "/", title: "Notas" },
@@ -17,6 +19,7 @@ const navItems = [
                     </a>
                 ))
             }
+            <StatusIsla server:defer />
         </div>
     </nav>
 </header>
