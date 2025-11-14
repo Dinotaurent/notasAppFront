@@ -1,0 +1,59 @@
+---
+import { actions } from "astro:actions";
+
+const { data, error } = await Astro.callAction(actions.getStatus, null);
+
+let estado = "Desconocido";
+let color = "gray";
+
+if (error) {
+    estado = "Offline";
+    color = "red";
+} else if (data) {
+    estado = "Online";
+    color = "green";
+} else {
+    estado = "Offline";
+    color = "red";
+}
+---
+
+<button
+    class="status-btn"
+    style={`border-color: ${color}; color: ${color};`}
+    disabled
+>
+    <span class="dot" style={`background-color: ${color};`}></span>
+    {estado}
+</button>
+
+<style>
+    .status-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        /* Tamaño pequeño para navbar */
+        font-size: 0.8rem;
+        padding: 0.25rem 0.6rem;
+
+        border: 2px solid;
+        border-radius: 6px;
+
+        background: transparent;
+        cursor: default;
+        font-weight: 600;
+        font-size: medium;
+    }
+
+    .status-btn:disabled {
+        opacity: 1;
+        cursor: default;
+    }
+
+    .dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+    }
+</style>
