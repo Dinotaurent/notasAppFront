@@ -30,6 +30,9 @@
         color: var(--main-text-color);
         line-height: 1.6;
         scroll-behavior: smooth;
+        min-height: 100vh;
+        background-attachment: fixed;
+        
     }
 
     .content-wrapper {
