@@ -49,7 +49,7 @@ export default function NotasPaginadas(props) {
                         hover:shadow-xl hover:shadow-lime-500/20
                         hover:-translate-y-1
                     ">
-                                <h2 class="font-bold text-lg text-[#95E329] mb-2">{nota.titulo}</h2>
+                                <a class="font-bold text-lg text-[#95E329] mb-2" href={`/notas/${nota._id}`}>{nota.titulo}</a>
 
                                 {/* 'flex-grow' aquí asegura que si las tarjetas tienen
                             diferentes alturas de texto, todas se alinearán bien. */}
