@@ -1,0 +1,41 @@
+---
+import NotasPaginadas from "@components/notas/NotasPaginadas";
+import Titulo from "@components/shared/Titulo.astro";
+import Layout from "@layouts/Layout.astro";
+import { actions } from "astro:actions";
+export const prerender = false;
+
+const page = Number(Astro.params.page) || 1;
+const limit = 10;
+
+const { data, error } = await Astro.callAction(actions.getNotas, {
+    page,
+    limit,
+});
+
+let notas = [];
+let totalPages = 1;
+
+if (!error && data) {
+    notas = data.data;
+    totalPages = data.pages;
+}
+// console.log(notas);
+---
+
+<Layout>
+    <Titulo titulo="Notas" />
+    {
+        notas.length === 0 ? (
+            <h1>No hay informacion</h1>
+        ) : (
+            <NotasPaginadas
+                notas={notas}
+                page={page}
+                totalPages={totalPages}
+                limit={limit}
+                client:load
+            />
+        )
+    }
+</Layout>
