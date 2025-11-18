@@ -1,0 +1,24 @@
+---
+import UpdateNota from "@components/notas/UpdateNota";
+import RegresarBoton from "@components/shared/RegresarBoton.astro";
+import Titulo from "@components/shared/Titulo.astro";
+import Layout from "@layouts/Layout.astro";
+import { actions } from "astro:actions";
+
+export const prerender = false;
+
+const notaId = Astro.params.id;
+const { data } = await Astro.callAction(actions.getNotaById, notaId ?? "");
+const nota = { id: notaId, titulo: data.titulo, contenido: data.contenido };
+// console.log(nota);
+---
+
+<Layout
+    ><Titulo titulo="Modificar nota" />
+
+    <div
+        class="flex flex-col items-center justify-start min-h-[80vh] pt-24 p-6 lg:p-12"
+    >
+        <UpdateNota client:load nota={nota} />
+    </div>
+</Layout>

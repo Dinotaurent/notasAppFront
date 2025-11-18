@@ -19,12 +19,11 @@ const { data } = await Astro.callAction(actions.getNotaById, notaId ?? "");
     </div>
     <div class="flex flex-auto items-center">
         <DeleteNotaBoton noteId={notaId} client:load />
-        <button
-            data-id={notaId}
-            id="btnUpdate"
+        <a
+            href=`/notas/editar/${notaId}`
             type="button"
             class="btn-update bg-linear-to-r from-yellow-400 via-orange-500 to-yellow-600 hover:bg-linear-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg px-5 py-2.5 me-2 mb-2"
-            ><span class="text-1xl">📝</span></button
+            ><span class="text-1xl text-black">📝 Editar</span></a
         >
     </div>
 
