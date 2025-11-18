@@ -1,0 +1,16 @@
+---
+import CreateNota from "@components/notas/CreateNota";
+import RegresarBoton from "@components/shared/RegresarBoton.astro";
+import Titulo from "@components/shared/Titulo.astro";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout
+    ><Titulo titulo="Crear nota" />
+    <RegresarBoton url="/notas/pagina/1" />
+    <div
+        class="flex flex-col items-center justify-start min-h-[80vh] pt-24 p-6 lg:p-12"
+    >
+        <CreateNota client:load />
+    </div>
+</Layout>
