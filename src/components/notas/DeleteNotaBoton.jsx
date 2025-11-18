@@ -55,7 +55,8 @@ export default function DeleteNoteButton(props) {
                 disabled={loading()}
                 onClick={handleDelete}
             >
-                {loading() ? "..." : "Eliminar"}
+                <span class="text-1xl">{loading() ? "..." : "☠🪦 Eliminar"}</span>
+
             </button>
 
             {/* CONFIRMAR */}
