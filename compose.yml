@@ -1,0 +1,12 @@
+services:
+  frontend-notas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: notas-app-frontend:${VERSION}
+    container_name: notas-app-frontend-${VERSION}
+    ports:
+      - "3000:4321" # Acceder por http://localhost:3000
+    environment:
+      - NODE_ENV=production
+    restart: always
